@@ -20,8 +20,10 @@ public class Game extends Canvas implements Runnable {
 	
 	private Random r;
 	private Handler handler;
+	private HUD hud;
 	
 	public Game() {
+		hud = new HUD();
 		handler = new Handler();
 		this.addKeyListener(new KeyInput());
 		new Window(WIDTH, HEIGHT, "Let's Build a Game", this);
