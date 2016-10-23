@@ -14,11 +14,19 @@ public class HUD {
 		
 	}
 	
-	public void render(Graphics g) {        
-	  g.setColor(Color.white);
-	  g.fillRect(15, 15, 200, 30); //draws healthbar outline
+	public void draw(Graphics g)
+	{
+		int maxHealth = 100;
+		float healthScale = HEALTH / maxHealth;
 	  g.setColor(Color.red);
-	  g.fillRect(15, 15, HEALTH*2, 30); //draws health
+	  g.fillRect(15, 15, 200, 30); //draws healthbar outline
+
+	  g.setColor(Color.green);
+		int healthBarX = 15;
+		float healthBarWidth = 200;
+		int healthBarY = 15;
+		int healthBarHeight = 30;
+		  g.fillRect(15, 15, HEALTH*2, 30); //draws health
 	}
 	
 
