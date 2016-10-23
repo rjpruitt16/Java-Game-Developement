@@ -19,14 +19,14 @@ public class Player extends GameObject {
 	}
 	
 	public Rectangle getBounds() {
-		return new Rectangle(x, y, 32, 32);
+		return new Rectangle(x, y, 20, 20);
 	}
 	
 	private void collision() {
 		for (int i = 0; i<handler.object.size(); i++) {
 			GameObject temp = handler.object.get(i);
 			
-			if (temp.id == ID.Projectile) {
+			if (temp.getID() == ID.Projectile) {
 				if (getBounds().intersects(temp.getBounds())) {
 					HUD.HEALTH -= 2;
 				}

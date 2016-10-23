@@ -28,6 +28,7 @@ public class Game extends Canvas implements Runnable {
 		this.addMouseListener(new MouseInputs(handler));
 		new Window(WIDTH, HEIGHT, "Let's Build a Game", this);
 		
+		handler.addObject(new Projectile(WIDTH-32, HEIGHT-200, ID.Projectile, handler));
 		handler.addObject(new Player(WIDTH-32, HEIGHT-32, ID.Player2, handler));
 		handler.addObject(new Catapult((int)(WIDTH*.2), (int)(HEIGHT*.4), ID.Catapult, handler));
 	}
