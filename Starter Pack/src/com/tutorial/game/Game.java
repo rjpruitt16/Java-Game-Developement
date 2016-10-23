@@ -12,7 +12,7 @@ public class Game extends Canvas implements Runnable {
 	 * 
 	 */
 	private static final long serialVersionUID = -7728264178317937023L;	
-	public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
+	public static final int WIDTH = 900, HEIGHT = WIDTH / 12 * 9;
 	
 	private Thread thread;
 	private boolean running = false;
@@ -26,9 +26,8 @@ public class Game extends Canvas implements Runnable {
 		hud = new HUD();
 		this.addKeyListener(new KeyInput(handler));
 		new Window(WIDTH, HEIGHT, "Let's Build a Game", this);
-				
-		handler.addObject(new Player(WIDTH/2 -32, HEIGHT/2 -32, ID.Player));
-		handler.addObject(new Player(WIDTH/2 +32, HEIGHT/2 +32, ID.Player2));
+		
+		handler.addObject(new Player(WIDTH-32, HEIGHT-32, ID.Player2));
 		
 	}
 
