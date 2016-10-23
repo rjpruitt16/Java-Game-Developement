@@ -8,7 +8,6 @@ public class Player extends GameObject {
 	
 	public Player(int x, int y, ID id) {
 		super(x, y, id);
-		
 		velX = 0;
 		velY = 0;
 	}
@@ -17,6 +16,8 @@ public class Player extends GameObject {
 		x += velX;
 		y += velY;
 		
+		x = Game.clamp(x, 0, Game.WIDTH-40);
+		y = Game.clamp(y, 0, Game.HEIGHT-65);
 	}
 	
 	public void render(Graphics g) {
