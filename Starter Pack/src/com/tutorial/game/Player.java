@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Random;
 
+
 public class Player extends GameObject {
    Random r = new Random();
    Handler handler;

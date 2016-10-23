@@ -14,7 +14,7 @@ public class HUD {
 		
 	}
 	
-	public void draw(Graphics g)
+	public void render(Graphics g)
 	{
       int maxHealth = 100;
 	  float healthScale = HEALTH / maxHealth;
