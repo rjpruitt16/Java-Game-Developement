@@ -2,8 +2,18 @@ package com.tutorial.game;
 
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferStrategy;
+import java.awt.image.ImageObserver;
+import java.text.AttributedCharacterIterator;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -20,17 +30,25 @@ public class Game extends Canvas implements Runnable {
 	private Random r;
 	private Handler handler;
 	private HUD hud;
+	private MouseInputs mouse;
+
+	
+	
 	
 	public Game() {
 		handler = new Handler();
 		hud = new HUD();
+		Catapult cat = new Catapult((int)(WIDTH*.2), (int)(HEIGHT*.4), ID.Catapult, handler, 20, 60);
 		this.addKeyListener(new KeyInput(handler));
-		this.addMouseListener(new MouseInputs(handler));
-		new Window(WIDTH, HEIGHT, "Let's Build a Game", this);
+		mouse = new MouseInputs(handler, cat);
 		
-		handler.addObject(new Projectile(WIDTH-32, HEIGHT-200, ID.Projectile, handler));
+		this.addMouseListener(mouse);
+		this.addMouseMotionListener(mouse.moveListener);
+		
+		Window w = new Window(WIDTH, HEIGHT, "Let's Build a Game", this);
+		
+		handler.addObject(cat);
 		handler.addObject(new Player(WIDTH-32, HEIGHT-32, ID.Player2, handler));
-		handler.addObject(new Catapult((int)(WIDTH*.2), (int)(HEIGHT*.4), ID.Catapult, handler));
 	}
 
 	public synchronized void start() {
@@ -83,6 +101,8 @@ public class Game extends Canvas implements Runnable {
 	public void tick() {
 		handler.tick();
 		hud.tick();
+		mouse.tick();
+		
 	}
 	
 	public void render() {
@@ -95,7 +115,7 @@ public class Game extends Canvas implements Runnable {
 		
 		Graphics g = bs.getDrawGraphics();
 		
-		g.setColor(Color.black);
+		g.setColor(Color.white);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
 		handler.render(g);
@@ -115,6 +135,11 @@ public class Game extends Canvas implements Runnable {
 		} else {
 			return var;
 		}
+	}
+	
+	public static void update(Projectile proj, int x, int y) {
+		proj.setX(x);
+		proj.setY(y);
 		
 	}
 	
