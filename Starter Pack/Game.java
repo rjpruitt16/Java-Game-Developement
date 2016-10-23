@@ -19,9 +19,11 @@ public class Game extends Canvas implements Runnable {
 	
 	private Random r;
 	private Handler handler;
+	private HUD hud;
 	
 	public Game() {
 		handler = new Handler();
+		hud = new HUD();
 		this.addKeyListener(new KeyInput(handler));
 		new Window(WIDTH, HEIGHT, "Let's Build a Game", this);
 				
@@ -79,10 +81,12 @@ public class Game extends Canvas implements Runnable {
 	
 	public void tick() {
 		handler.tick();
+		hud.tick();
 	}
 	
 	public void render() {
 		BufferStrategy bs = this.getBufferStrategy();
+		
 		if(bs == null) {
 			this.createBufferStrategy(3);
 			return;
@@ -94,6 +98,9 @@ public class Game extends Canvas implements Runnable {
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
 		handler.render(g);
+		//changed draw to render, intialized the variable and called it in the main function 
+		hud.render(g);
+		//called HUD to render display on game screen
 		
 		g.dispose();
 		bs.show();
@@ -101,7 +108,6 @@ public class Game extends Canvas implements Runnable {
 	
 	public static void main (String arg[]) {
 		new Game();
-		
 	}
 
 }
